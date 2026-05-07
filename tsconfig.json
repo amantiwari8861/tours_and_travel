@@ -1,0 +1,65 @@
+{
+  "compilerOptions": {
+    /* ========================
+       Language and Environment
+    ======================== */
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    /* ========================
+       Project Structure
+    ======================== */
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    /* ========================
+       Strict Type Safety
+    ======================== */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "useUnknownInCatchVariables": true,
+
+    /* ========================
+       Additional Safety
+    ======================== */
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* ========================
+       Module Interop
+    ======================== */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "verbatimModuleSyntax": true,
+
+    /* ========================
+       Build Output
+    ======================== */
+    "sourceMap": true,
+    "removeComments": true,
+    "incremental": true,
+
+    /* ========================
+       Performance
+    ======================== */
+    "skipLibCheck": true,
+
+    /* ========================
+       Node Types
+    ======================== */
+    "types": ["node"]
+  },
+
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

@@ -1,0 +1,14 @@
+node_modules
+.env
+package-lock.json
+/dist
+*.log
+.git
+*.pem
+*.ppk
+.sublime-workspace
+.sublime-project
+.vscode
+.agent
+.idea
+.cache
