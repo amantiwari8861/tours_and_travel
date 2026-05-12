@@ -1,29 +1,35 @@
-import type { Request, Response } from "express";
+import type { RequestHandler } from "express";
 
-const addUser = async (req: Request, res: Response) => {
+const addUser: RequestHandler = async (req, res) => {
     const userObj = req.body;
     res.send("adding user with details:" + JSON.stringify(userObj));
 }
-const getAllUser = async (req: Request, res: Response) => {
+
+const getAllUser: RequestHandler = async (req, res) => {
     res.send("sending all user details");
 }
-const updateUser = async (req: Request, res: Response) => {
+
+const updateUser: RequestHandler<{ userId: string }> = async (req, res) => {
     const userObj = req.body;
     const userId = req.params.userId;
     res.send("updating user having id " + userId + " with details: " + JSON.stringify(userObj));
 }
-const deleteUser = async (req: Request, res: Response) => {
+
+const deleteUser: RequestHandler<{ userId: string }> = async (req, res) => {
     const userId = req.params.userId;
     res.send("deleting user having id " + userId);
 }
-const getUserById = async (req: Request, res: Response) => {
+
+const getUserById: RequestHandler<{ userId: string }> = async (req, res) => {
     const userId = req.params.userId;
     res.send("giving user details having id " + userId);
 }
-const getUserByEmail = async (req: Request, res: Response) => {
+
+const getUserByEmail: RequestHandler<{ email: string }> = async (req, res) => {
     const email = req.params.email;
     res.send("giving user details having email id " + email);
 }
+
 export { addUser, getAllUser, updateUser, deleteUser, getUserById, getUserByEmail };
 
 
