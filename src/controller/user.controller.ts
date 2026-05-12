@@ -1,3 +1,5 @@
+import type { Request, Response } from "express";
+
 const addUser = async (req: Request, res: Response) => {
     const userObj = req.body;
     res.send("adding user with details:" + JSON.stringify(userObj));

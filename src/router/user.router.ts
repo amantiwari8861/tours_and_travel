@@ -1,5 +1,12 @@
 import { Router, type Request, type Response } from "express";
-import { addUser, deleteUser, getAllUser, updateUser, getUserById, getUserByEmail } from "../controller/user.controller.ts";
+import {
+    addUser,
+    deleteUser,
+    getAllUser,
+    updateUser,
+    getUserById,
+    getUserByEmail
+} from "../controller/user.controller.js";
 
 const userRouter = Router();
 

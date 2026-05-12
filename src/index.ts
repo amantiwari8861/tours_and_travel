@@ -3,7 +3,7 @@ import "dotenv/config";
 import express, { type Request, type Response } from "express";
 import morgan from "morgan";
 
-import userRouter from "./router/user.router.ts";
+import userRouter from "./router/user.router.js";
 
 const app = express();
 
@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 8080;
 
 const HOSTNAME = process.env.HOSTNAME || "localhost";
 
-app.use(morgan("combined"));
+app.use(morgan("dev"));
 
 app.get("/", (req: Request, res: Response) => {
     res.send("Server is up and Running!");
@@ -28,5 +28,5 @@ app.listen(Number(PORT), HOSTNAME, () => {
 });
 
 // npm i express morgan
-// npm i -D dotenv typescript ts-node nodemon
+// npm i -D dotenv typescript tsx
 // npm i -D @types/express @types/morgan @types/node
