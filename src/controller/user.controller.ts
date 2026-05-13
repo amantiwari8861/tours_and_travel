@@ -1,8 +1,21 @@
 import type { RequestHandler } from "express";
+import UserModal from "../model/user.model.js";
 
 const addUser: RequestHandler = async (req, res) => {
-    const userObj = req.body;
-    res.send("adding user with details:" + JSON.stringify(userObj));
+
+    try {
+        const userObj = req.body;
+        const userModel = new UserModal(userObj);
+        const savedUser = await userModel.save();
+        console.log(savedUser);
+        if (savedUser) {
+            return res.status(201).json({ message: "User added successfully", user: savedUser });
+        }
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Failed to add user" });
+    }
 }
 
 const getAllUser: RequestHandler = async (req, res) => {

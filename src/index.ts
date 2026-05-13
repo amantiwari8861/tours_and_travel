@@ -2,7 +2,7 @@ import "dotenv/config";
 
 import express, { type Request, type Response } from "express";
 import morgan from "morgan";
-
+import connectDB from "./config/mongoose.js";
 import userRouter from "./router/user.router.js";
 
 const app = express();
@@ -23,9 +23,12 @@ app.get("/", (req: Request, res: Response) => {
 app.use("/api/v1/user", userRouter);
 
 
-app.listen(Number(PORT), HOSTNAME, () => {
+app.listen(Number(PORT), HOSTNAME, async () => {
     console.log(`listening on http://${HOSTNAME}:${PORT}`);
+    await connectDB()
 });
+
+
 
 // npm i express morgan
 // npm i -D dotenv typescript tsx
