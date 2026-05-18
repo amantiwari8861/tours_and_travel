@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+:root{
+    --primary:#002366;
+    --secondary: #C5A059;
+    --tertiary:#1A365D;
+    --neutral:#F8F9FA;
+    --heading-font:"Noto Serif",serif;
+    --body-font:"Manrope",sans-serif;
+}
+*{
+    font-family: var(--body-font);
+}
+h1,h2,h3,h4{
+    font-family: var(--heading-font);
+    font-weight: 600;
+    line-height: 1.2;
+}
+@import "tailwindcss";
+
+
+@layer base
+{
+    .btn{
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+    .btn-primary{
+        background-color: #003580;
+        color: white;
+    }
+    .btn-success{
+        background-color: #008037;
+        color: white;
+    }
+}
