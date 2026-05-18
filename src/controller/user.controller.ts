@@ -2,13 +2,16 @@ import type { RequestHandler } from "express";
 import UserModal from "../model/user.model.js";
 import userModel from "../model/user.model.js";
 import userDetailsModel from "../model/userDetails.model.js";
+import bcrypt from "bcryptjs";
 
 const addUser: RequestHandler = async (req, res) => {
 
     try {
 
         const userObj = req.body;
-
+        const hash = bcrypt.hashSync(userObj.password, 10);
+        userObj.password = hash;
+        
         const userModel = new UserModal(userObj);
 
         const savedUser = await userModel.save();

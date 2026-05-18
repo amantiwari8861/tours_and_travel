@@ -17,7 +17,7 @@ userRouter.get("/greet", (req: Request, res: Response) => {
 userRouter.get("/", getAllUser);
 userRouter.get("/:userId", getUserById);
 userRouter.get("/email/:email", getUserByEmail);
-userRouter.post("/", addUser);
+userRouter.post("/", addUser);// http://localhost:5000/api/v1/user
 userRouter.put("/:userId", updateUser);
 userRouter.delete("/:userId", deleteUser);
 

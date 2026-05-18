@@ -6,9 +6,12 @@ import connectDB from "./config/mongoose.js";
 import userRouter from "./router/user.router.js";
 import userDetailsRouter from "./router/userDetails.router.js";
 import placeRouter from "./router/place.router.js";
+import cors from "./config/cors.config.js";
+import authRouter from "./router/auth.router.js";
 
 const app = express();
 
+app.use(cors);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -23,6 +26,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user-details", userDetailsRouter);
 app.use("/api/v1/place", placeRouter);
 
@@ -34,6 +38,6 @@ app.listen(Number(PORT), HOSTNAME, async () => {
 
 
 
-// npm i express morgan
+// npm i express morgan jsonwebtoken bcryptjs
 // npm i -D dotenv typescript tsx
-// npm i -D @types/express @types/morgan @types/node
+// npm i -D @types/express @types/morgan @types/node @types/cors @types/jsonwebtoken @types/bcryptjs
