@@ -9,6 +9,8 @@ import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Register";
 import LearnUseEffect from "./components/LearnUseEffect";
 import Wrapping from "./components/Wrapping";
+import DestinationDescription from "./pages/DestinationDescription";
+import Collections from "./pages/collections/Collections";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +49,14 @@ const router = createBrowserRouter([
       {
         path: "/wrapping",
         element: <Wrapping />,
+      },
+      {
+        path: "/collections",
+        element: <Collections />,
+      },
+      {
+        path: "/destination/:slug",
+        element: <DestinationDescription />,
       },
       {
         path: "*",

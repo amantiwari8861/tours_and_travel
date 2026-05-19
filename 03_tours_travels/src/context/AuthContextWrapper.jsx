@@ -28,13 +28,9 @@ const AuthContextWrapper = ({ children }) => {
   };
 
   return (
-    <>
-      <AuthContext.Provider
-        value={{ login, logout, isLoggedIn, userPrinciple }}
-      >
-        {children}
-      </AuthContext.Provider>
-    </>
+    <AuthContext.Provider value={{ login, logout, isLoggedIn, userPrinciple }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 
