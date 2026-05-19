@@ -1,11 +1,23 @@
 import type { RequestHandler } from "express";
 import placeModel from "../model/places.model.js";
 
+const addPlaceUtil=async (placeObj:any)=>{
+    try {
+        const savedPlace = await new placeModel(placeObj).save();
+        return savedPlace;
+    } 
+    catch (error) {
+        console.error("Error in addPlaceUtil:", error);
+        throw error;
+    }
+}
+
+
 const addPlace: RequestHandler = async (req, res) => {
     try {
         const placeObj = req.body;
 
-        const savedPlace = await new placeModel(placeObj).save();
+        const savedPlace = await addPlaceUtil(placeObj);
 
         res.status(201).json({
             message: "Place added successfully",
@@ -15,6 +27,23 @@ const addPlace: RequestHandler = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Failed to add place" });
+    }
+}
+
+const addMultiplePlaces:RequestHandler = async (req, res) => {
+    try {
+        const places = req.body;
+
+        const savedPlaces = await placeModel.insertMany(places);
+
+        res.status(201).json({
+            message: "Places added successfully",
+            places: savedPlaces
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Failed to add places" });
     }
 }
 
@@ -190,4 +219,4 @@ const deleteReview: RequestHandler<{ placeId: string; reviewId: string }> = asyn
     }
 }
 
-export { addPlace, getAllPlaces, getPlaceById, updatePlace, deletePlace, addReview, deleteReview };
+export { addPlace,addMultiplePlaces, getAllPlaces, getPlaceById, updatePlace, deletePlace, addReview, deleteReview };

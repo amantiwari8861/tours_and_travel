@@ -6,7 +6,8 @@ import {
     updatePlace,
     deletePlace,
     addReview,
-    deleteReview
+    deleteReview,
+    addMultiplePlaces
 } from "../controller/place.controller.js";
 
 const placeRouter = Router();
@@ -14,6 +15,7 @@ const placeRouter = Router();
 placeRouter.get("/", getAllPlaces);
 placeRouter.get("/:placeId", getPlaceById);
 placeRouter.post("/", addPlace);
+placeRouter.post("/add-multiple", addMultiplePlaces);
 placeRouter.put("/:placeId", updatePlace);
 placeRouter.delete("/:placeId", deletePlace);
 

@@ -8,10 +8,12 @@ import userDetailsRouter from "./router/userDetails.router.js";
 import placeRouter from "./router/place.router.js";
 import cors from "./config/cors.config.js";
 import authRouter from "./router/auth.router.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
 app.use(cors);
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -38,6 +40,6 @@ app.listen(Number(PORT), HOSTNAME, async () => {
 
 
 
-// npm i express morgan jsonwebtoken bcryptjs
+// npm i express morgan jsonwebtoken bcryptjs cookie-parser
 // npm i -D dotenv typescript tsx
-// npm i -D @types/express @types/morgan @types/node @types/cors @types/jsonwebtoken @types/bcryptjs
+// npm i -D @types/express @types/morgan @types/node @types/cors @types/jsonwebtoken @types/bcryptjs @types/cookie-parser

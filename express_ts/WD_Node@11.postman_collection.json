@@ -11,7 +11,267 @@
       "name": "user",
       "item": [
         {
-          "name": "Get data",
+          "name": "Get users",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTBjMzdiMGRmMDMzYmU1MDM1NTAyMTAiLCJyb2xlIjoiVVNFUiIsImlzQWN0aXZlIjp0cnVlLCJpYXQiOjE3NzkxODU1OTEsImV4cCI6MTc3OTE4NjQ5MX0.Ax_Q539kYFZfoyeigwT7-ufXcgebW1b1lPp2ejoqWwE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user"
+              ]
+            },
+            "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+          },
+          "response": []
+        },
+        {
+          "name": "Get user by id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/user/100",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "100"
+              ]
+            },
+            "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+          },
+          "response": []
+        },
+        {
+          "name": "Get user by email",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/user/email/amantiwari8861@gmail.com",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "email",
+                "amantiwari8861@gmail.com"
+              ]
+            },
+            "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+          },
+          "response": []
+        },
+        {
+          "name": "Post data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful POST request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"name\": \"{{$randomFullName}}\",\n    \"email\":\"amantiwari8861@gmail.com\",\n    \"password\":\"123456\",\n    \"isProfileComplete\":true,\n    \"healthIssues\":[\"Nausea\",\"Sea Sickness\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user"
+              ]
+            },
+            "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+          },
+          "response": []
+        },
+        {
+          "name": "Update data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful PUT request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/user/101",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "101"
+              ]
+            },
+            "description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful DELETE request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/user/100",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "100"
+              ]
+            },
+            "description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "places",
+      "item": [
+        {
+          "name": "Get users",
           "event": [
             {
               "listen": "test",
@@ -141,7 +401,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+              "raw": "{\n\t\"name\": \"{{$randomFullName}}\",\n    \"email\":\"{{$randomEmail}}\",\n    \"password\":\"{{$randomPassword}}\",\n    \"isProfileComplete\":true,\n    \"healthIssues\":[\"Nausea\",\"Sea Sickness\"]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -149,14 +409,60 @@
               }
             },
             "url": {
-              "raw": "{{base_url}}/api/v1/user",
+              "raw": "{{base_url}}/api/v1/place",
               "host": [
                 "{{base_url}}"
               ],
               "path": [
                 "api",
                 "v1",
-                "user"
+                "place"
+              ]
+            },
+            "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+          },
+          "response": []
+        },
+        {
+          "name": "add multiple",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful POST request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"name\": \"Agra\",\n    \"description\": \"Agra is famous for the Taj Mahal and Mughal architecture.\",\n    \"category\": \"Historical\",\n    \"image\": \"https://sukhholidays.com/wp-content/uploads/2025/10/12529715.jpeg\",\n    \"location\": \"Agra, Uttar Pradesh, India\",\n    \"price\": 10000,\n    \"rating\": 4.5,\n    \"reviews\": [],\n    \"averageRating\": 4.5,\n    \"isActive\": true\n  },\n  {\n    \"name\": \"Ranthambore\",\n    \"description\": \"Ranthambore is known for its tiger reserve and wildlife safari.\",\n    \"category\": \"Wildlife\",\n    \"image\": \"https://sukhholidays.com/wp-content/uploads/2025/10/l4huijlgex4.jpg\",\n    \"location\": \"Ranthambore, Rajasthan, India\",\n    \"price\": 20000,\n    \"rating\": 4.7,\n    \"reviews\": [],\n    \"averageRating\": 4.7,\n    \"isActive\": true\n  },\n  {\n    \"name\": \"Jodhpur\",\n    \"description\": \"Jodhpur is known as the Blue City of Rajasthan.\",\n    \"category\": \"Historical\",\n    \"image\": \"https://sukhholidays.com/wp-content/uploads/2025/10/4453955.jpg\",\n    \"location\": \"Jodhpur, Rajasthan, India\",\n    \"price\": 30000,\n    \"rating\": 4.4,\n    \"reviews\": [],\n    \"averageRating\": 4.4,\n    \"isActive\": true\n  },\n  {\n    \"name\": \"Jaipur\",\n    \"description\": \"Jaipur is popularly known as the Pink City of India.\",\n    \"category\": \"Cultural\",\n    \"image\": \"https://sukhholidays.com/wp-content/uploads/2025/10/27833732.jpeg\",\n    \"location\": \"Jaipur, Rajasthan, India\",\n    \"price\": 40000,\n    \"rating\": 4.8,\n    \"reviews\": [],\n    \"averageRating\": 4.8,\n    \"isActive\": true\n  },\n  {\n    \"name\": \"Delhi\",\n    \"description\": \"Delhi is the capital city of India with rich heritage and modern attractions.\",\n    \"category\": \"Urban\",\n    \"image\": \"https://sukhholidays.com/wp-content/uploads/2025/10/4813658.jpg\",\n    \"location\": \"Delhi, India\",\n    \"price\": 50000,\n    \"rating\": 4.3,\n    \"reviews\": [],\n    \"averageRating\": 4.3,\n    \"isActive\": true\n  },\n  {\n    \"name\": \"Udaipur\",\n    \"description\": \"Udaipur is known for its beautiful lakes and royal palaces.\",\n    \"category\": \"Romantic\",\n    \"image\": \"https://sukhholidays.com/wp-content/uploads/2024/02/Destination-01.webp\",\n    \"location\": \"Udaipur, Rajasthan, India\",\n    \"price\": 60000,\n    \"rating\": 4.9,\n    \"reviews\": [],\n    \"averageRating\": 4.9,\n    \"isActive\": true\n  },\n  {\n    \"name\": \"Desert\",\n    \"description\": \"Experience the beautiful deserts and sand dunes of Rajasthan.\",\n    \"category\": \"Adventure\",\n    \"image\": \"https://sukhholidays.com/wp-content/uploads/2024/02/Destination-07.webp\",\n    \"location\": \"Rajasthan, India\",\n    \"price\": 70000,\n    \"rating\": 4.2,\n    \"reviews\": [],\n    \"averageRating\": 4.2,\n    \"isActive\": true\n  },\n  {\n    \"name\": \"Ajmer\",\n    \"description\": \"Ajmer is famous for Ajmer Sharif Dargah and spiritual tourism.\",\n    \"category\": \"Religious\",\n    \"image\": \"https://sukhholidays.com/wp-content/uploads/2024/02/Destination-03.webp\",\n    \"location\": \"Ajmer, Rajasthan, India\",\n    \"price\": 80000,\n    \"rating\": 4.1,\n    \"reviews\": [],\n    \"averageRating\": 4.1,\n    \"isActive\": true\n  },\n  {\n    \"name\": \"Pushkar\",\n    \"description\": \"Pushkar is known for its sacred lake and Brahma Temple.\",\n    \"category\": \"Religious\",\n    \"image\": \"https://sukhholidays.com/wp-content/uploads/2024/02/Destination-02.webp\",\n    \"location\": \"Pushkar, Rajasthan, India\",\n    \"price\": 90000,\n    \"rating\": 4.6,\n    \"reviews\": [],\n    \"averageRating\": 4.6,\n    \"isActive\": true\n  },\n  {\n    \"name\": \"Jaisalmer\",\n    \"description\": \"Jaisalmer is famous for its golden fort and desert camps.\",\n    \"category\": \"Adventure\",\n    \"image\": \"https://sukhholidays.com/wp-content/uploads/2024/02/Destination-05.webp\",\n    \"location\": \"Jaisalmer, Rajasthan, India\",\n    \"price\": 100000,\n    \"rating\": 4.7,\n    \"reviews\": [],\n    \"averageRating\": 4.7,\n    \"isActive\": true\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/place/add-multiple",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "place",
+                "add-multiple"
               ]
             },
             "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
@@ -256,6 +562,35 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\":\"amantiwari8861@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/auth/login",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
     }
   ],
   "event": [

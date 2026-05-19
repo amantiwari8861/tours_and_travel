@@ -34,4 +34,4 @@ const checkAuthHeader = async (req: any,res: any,next: any) => {
     req.user = decodedToken;
     next();
 }
-export { createJWT, verifyJWT,decodeJWT };
+export { createJWT, verifyJWT,decodeJWT,checkAuthHeader };
