@@ -1,54 +1,37 @@
-import type { RequestHandler } from "express";
-import { verifyJWT } from "../util/jwtUtil.js";
+import { type RequestHandler } from "express";
+import jwt from "jsonwebtoken";
+import { type CustomJwtPayload } from "../types/jwt.types.js";
 
-const authMiddleware: RequestHandler = async (req, res, next) => {
-    try {
+const authMiddleware: RequestHandler = async (
+  req,
+  res,
+  next
+) => {
+  try {
+    const token =
+      req.cookies?.token ||
+      req.headers.authorization?.split(" ")[1];
 
-        let token: string | undefined;
-
-        // 1. Check cookie token first
-        if (req.cookies?.token) {
-            console.log("getting :",req.cookies.token);
-            
-            token = req.cookies.token;
-        }
-
-        // 2. If no cookie token, check Authorization header
-        else if (req.headers.authorization?.startsWith("Bearer ")) {
-            console.log(req.headers.authorization);
-            token = req.headers.authorization.split(" ")[1];
-        }
-
-        console.log(token);
-        
-        // 3. No token found
-        if (!token) {
-            return res.status(401).json({
-                message: "Unauthorized: Token missing"
-            });
-        }
-
-        // 4. Verify token
-        const decodedToken = await verifyJWT(token);
-
-        if (!decodedToken) {
-            return res.status(401).json({
-                message: "Unauthorized: Invalid token"
-            });
-        }
-
-        // 5. Attach user to request
-        req.user = decodedToken.user;
-
-        next();
-
-    } catch (error) {
-        console.error("Auth Middleware Error:", error);
-
-        return res.status(500).json({
-            message: "Auth Middleware Error:"
-        });
+    if (!token) {
+      res.status(401).json({
+        message: "Unauthorized",
+      });
+      return;
     }
+
+    const decodedToken = jwt.verify(
+      token,
+      process.env.JWT_SECRET!
+    ) as CustomJwtPayload;
+
+    req.user = decodedToken.user;
+
+    next();
+  } catch (error) {
+    res.status(401).json({
+      message: "Invalid token",
+    });
+  }
 };
 
 export default authMiddleware;

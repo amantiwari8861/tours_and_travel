@@ -59,7 +59,11 @@
     /* ========================
        Node Types
     ======================== */
-    "types": ["node"]
+    "types": ["node"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ]
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
