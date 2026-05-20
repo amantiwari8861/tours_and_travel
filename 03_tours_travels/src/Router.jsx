@@ -11,6 +11,7 @@ import LearnUseEffect from "./components/LearnUseEffect";
 import Wrapping from "./components/Wrapping";
 import DestinationDescription from "./pages/DestinationDescription";
 import Collections from "./pages/collections/Collections";
+import Cart from "./pages/Cart";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/destination/:slug",
         element: <DestinationDescription />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
       },
       {
         path: "*",

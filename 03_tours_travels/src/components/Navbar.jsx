@@ -1,14 +1,16 @@
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useLocation } from "react-router";
 import { useState } from "react";
 
 import { AnimatePresence, motion } from "motion/react";
 import useAuth from "../hooks/useAuth";
+import { useSelector } from "react-redux";
 
 const navbarLinks = [
   { title: "Home", path: "/" },
   { title: "Signature Collections", path: "/collections" },
   { title: "Indian Escapes", path: "/indian-escapes" },
   { title: "Global Journeys", path: "/global-journeys" },
+  { title: "Cart", path: "/cart" },
   // { title: "Honeymoons", path: "/honeymoons" },
   // { title: "Festive Collections", path: "/festive-collections" },
   // { title: "About Us", path: "/about" },
@@ -177,6 +179,7 @@ const UserMenu = () => {
 };
 
 const CustomNavLink = ({ link, index }) => {
+  const cartItems = useSelector((state) => state.cart.cartItems);
   return (
     <li key={index}>
       <NavLink
@@ -187,7 +190,7 @@ const CustomNavLink = ({ link, index }) => {
         }
         aria-current="page"
       >
-        {link.title}
+        {link.title} {link.path === "/cart" ? <>({cartItems.length})</> : null}
       </NavLink>
     </li>
   );
